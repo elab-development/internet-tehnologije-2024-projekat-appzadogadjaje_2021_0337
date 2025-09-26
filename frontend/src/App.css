@@ -1,3 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+.goldman-bold {
+  font-family: 'Goldman', sans-serif;
+  font-weight: 700;
+}
+
+
+body,html {
+  margin: 0;
+  font: bold 14px/1.4 'Open Sans', arial, sans-serif;
+  background: #000;
+  color: white;
+  /*min-height: 100vh;*/
+  display: grid;
+  background-image: linear-gradient(rgba(51, 51, 51, .7) .1em, transparent .1em), linear-gradient(90deg, rgba(51, 51, 51, 0.7) .1em, transparent .1em);
+  background-size: 3em 3em;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(191, 0, 255, 0.2) .1em, transparent .1em),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.2) .1em, transparent .1em);
+  background-size: 3em 3em;
+  mix-blend-mode: screen;
+  filter: blur(3px);
+  z-index: 0;
+}
+
+
+
+.cyberpunk-frame {
+  margin: 3rem 20rem;
+  z-index: 1;
+  padding: 7rem 9rem;
+  background: rgba(10, 10, 10, 0.9);
+  border: 3px solid rgb(80, 30, 230);
+  border-radius: 12px;
+  box-shadow: 
+    0 0 10px rgb(82, 25, 180),
+    0 0 20px rgb(84, 41, 202),
+    inset 0 0 10px rgb(60, 27, 208);
+  max-width: 700px;
+}
+
 .App {
   text-align: center;
 }
@@ -28,11 +76,258 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+/*@keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}*/
+
+
+
+ul { 
+  margin: 15px auto 0; 
+  padding: 0; 
+  list-style: none; 
+  display: table;
+  width: 600px;
+  text-align: center;
 }
+li { 
+  display: table-cell; 
+  position: relative; 
+  padding: 15px 0;
+}
+a {
+  font-family: goldman;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+@media screen and (max-height: 300px) {
+	ul {
+		margin-top: 40px;
+	}
+}
+
+
+
+@font-face {
+  font-family: Cyber;
+  src: url('https://assets.codepen.io/605876/Blender-Pro-Bold.otf');
+  font-display: swap;
+}
+
+.naslov {display: block;       
+  text-align: right; 
+  color: white;
+  font-family: goldman;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+  margin-top: -2rem;
+  margin-right: -4rem;
+text-shadow: 0.05em 0 0 rgba(255, 0, 230, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+    0.025em 0.05em 0 rgba(88, 9, 148, 0.75);}
+
+.glitch {
+  display: block;       
+  text-align: left;
+  margin-top: -4rem; 
+  margin-left: -3rem;
+  color: white;
+  font-family: goldman;
+  font-size: 8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+ 
+
+  text-shadow: 0.05em 0 0 rgba(255, 0, 230, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+    0.025em 0.05em 0 rgba(88, 9, 148, 0.75);
+
+  animation: glitch 3067ms infinite;
+}
+
+.glitch span {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.glitch span:first-child {
+  animation: glitch 3069ms infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-0.025em, -0.0125em);
+  /* color: green; */
+  opacity: 0.7;
+}
+
+.glitch span:last-child {
+  animation: glitch 3065ms infinite;
+  clip-path: polygon(0 71%, 100% 49%, 100% 100%, 0% 100%);
+  transform: translate(0.0125em, 0.025em);
+  
+  opacity: 0.7;
+}
+
+/* https://web.dev/prefers-reduced-motion/#(bonus)-forcing-reduced-motion-on-all-websites */
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(251, 0, 255, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  5% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 251, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  6% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 251, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  10% {
+    text-shadow: -0.05em -0.025em 0 rgba(247, 0, 255, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  11% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 242, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 251, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  16% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 217, 0.75),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 217, 0.75),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+.submit-btn {
+  margin-top: 5rem;
+  width: 100%;
+  padding: 0.8em;
+  background-color: transparent;
+  border: 2px solid #984ff2; /* primary color */
+  color: #b886f5;
+  font-family: "Fira Code", Consolas, "Courier New", Courier, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  max-width: 400px;
+  height: 75px;
+}
+
+.submit-btn .btn-text {
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.2s ease;
+}
+
+.submit-btn:hover .btn-text {
+  opacity: 0;
+}
+
+.submit-btn::before,
+.submit-btn::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background-color: #ad7bf4;
+  transition: opacity 0.2s ease;
+}
+
+.submit-btn:hover::before {
+  opacity: 1;
+  color: #a855f7; /* secondary color */
+  animation: glitch-anim 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.submit-btn:hover::after {
+  opacity: 1;
+  color: #2a0052; /* background color */
+  animation: glitch-anim 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both;
+}
+
+@keyframes glitch-anim {
+  0% { transform: translate(0); clip-path: inset(0 0 0 0); }
+  20% { transform: translate(-5px, 3px); clip-path: inset(50% 0 20% 0); }
+  40% { transform: translate(3px, -2px); clip-path: inset(20% 0 60% 0); }
+  60% { transform: translate(-4px, 2px); clip-path: inset(80% 0 5% 0); }
+  80% { transform: translate(4px, -3px); clip-path: inset(30% 0 45% 0); }
+  100% { transform: translate(0); clip-path: inset(0 0 0 0); }
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+  background-color: #ab66eb;
+  color: #0d0d0d;
+  box-shadow: 0 0 25px #b287f3;
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
+
+/* Optional: Disable animation for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .submit-btn::before,
+  .submit-btn::after {
+    animation: none;
+    opacity: 0;
+  }
+  .submit-btn:hover .btn-text {
+    opacity: 1;
+  }
+}
+
+/*Life is not a waste a time and time is not a waste of life. So let's stop wasting time and have the time of our life*/

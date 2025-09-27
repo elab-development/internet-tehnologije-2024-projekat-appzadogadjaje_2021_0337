@@ -1,10 +1,10 @@
 import "./App.css"; 
-import NavBar from "./navBar";
-import Home from "./home";
+import NavBar from "./components/navBar";
+import Home from "./pages/home";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
-import Login from "./login";
-import Register from "./register";
-import Dogadjaji from "./dogadjaji";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Dogadjaji from "./pages/dogadjaji";
 
 function App() {
    return ( 

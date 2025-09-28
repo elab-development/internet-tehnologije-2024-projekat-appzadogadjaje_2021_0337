@@ -5,7 +5,7 @@ import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Dogadjaji from "./pages/dogadjaji";
-
+import ChangePassword from "./pages/promenaLozinke"
 function App() {
    return ( 
         <BrowserRouter>
@@ -15,6 +15,7 @@ function App() {
           <Route path="/dogadjaji" element={<Dogadjaji />} /> 
           <Route path="/login" element={<Login />} />
           <Route path="/registracija" element={<Register />} />
+          <Route path="/promenaLozinke" element={<ChangePassword />} />
         </Routes>
         </BrowserRouter> 
 

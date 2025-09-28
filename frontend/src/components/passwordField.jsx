@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function PasswordField({ value, onChange, error }) {
+export default function PasswordField({ label="Lozinka",value, onChange, error }) {
   return (
-    <div className="input-field">
-      <label className="input-label">Lozinka</label>
+      <div className="input-field">
+      <label className="input-label">{label}</label> 
       <input
         type="password"
         value={value}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NameField from "../components/nameField";
 import EmailField from "../components/emailField";
 import PasswordField from "../components/passwordField";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -9,6 +10,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(""); 
   
+  const navigate = useNavigate();
+
   const handleRegister = async () => {
     try {
       const res = await fetch(`http://localhost:8000/api/register`, {
@@ -23,6 +26,7 @@ export default function Register() {
         setName("");
         setEmail("");
         setPassword("");
+        navigate("/dogadjaji");
       } else {
         const backendMessage = data.message || Object.values(data).flat().join(", ");
       setMessage(backendMessage);

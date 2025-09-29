@@ -331,4 +331,54 @@ text-shadow: 0.05em 0 0 rgba(255, 0, 230, 0.75),
   }
 }
 
+/* Container za sve događaje */
+.events-container {
+  display: flex;
+  flex-wrap: wrap;       /* da idu u novi red ako nema mesta */
+  gap: 20px;             /* razmak između box-ova */
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+/* Pojedinačni box / kartica */
+.event-card {
+   flex: 0 0 200px;       /* fiksna širina, neće rasti */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 10px;
+  width: 200px;          /* fiksna širina za box */
+  background-color: #000000;
+  transition: transform 0.2s;
+  box-sizing: border-box;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Slika u box-u */
+.event-card img {
+  width: 100%;
+  height: 120px;         /* smanjena visina */
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+/* Naslov događaja */
+.event-card h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+/* Ostali tekst */
+.event-card p {
+  font-size: 0.875rem;
+  margin: 2px 0;
+}
+
+
 /*Life is not a waste a time and time is not a waste of life. So let's stop wasting time and have the time of our life*/

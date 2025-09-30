@@ -22,6 +22,7 @@ export default function Login() {
 
       if (res.ok) {
         localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
         setMessage(data.message);
         setEmail("");
         setPassword("");

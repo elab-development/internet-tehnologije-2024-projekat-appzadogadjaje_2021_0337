@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import PasswordField from "../components/passwordField"; 
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +7,7 @@ export default function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [message, setMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,9 +51,20 @@ export default function ChangePassword() {
     }
   };
 
+  useEffect(() => {
+        const timer = setTimeout(() => {
+          setIsModalOpen(true);
+        }, 30);
+        return () => clearTimeout(timer); 
+      }, []); 
+
   return (
-    <div className="auth-container">
-      <h1 className="auth-title">Promena lozinke</h1>
+     <div className={`modal ${isModalOpen ? 'active' : ''}`} id="login-form-modal">
+       <section className="modal__body">
+          <div className="body__backdrop"></div>
+          <div className="body__content">
+            <div className="modal__glitch" aria-hidden="true">
+      <h2 className="auth-title">Promena lozinke</h2>
 
       <PasswordField 
         label="Trenutna lozinka" 
@@ -72,11 +84,14 @@ export default function ChangePassword() {
         onChange={(e) => setNewPasswordConfirm(e.target.value)} 
       />
 
-      {message && <p style={{ color: "yellow", marginTop: "1rem" }}>{message}</p>}
+      {message && <p class="message">{message}</p>}
 
-      <button onClick={handleChangePassword} className="auth-button">
+      <button onClick={handleChangePassword} className="dugme">
         Promeni lozinku
       </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

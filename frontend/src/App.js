@@ -1,4 +1,6 @@
-import "./App.css"; 
+import "./css/App.css"; 
+import "./css/navBar.css"
+import "./css/animacija.css"
 import NavBar from "./components/navBar";
 import Home from "./pages/home";
 import { BrowserRouter,Routes,Route } from "react-router-dom";

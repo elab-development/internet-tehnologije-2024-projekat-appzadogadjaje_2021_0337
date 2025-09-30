@@ -1,36 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
-
-.goldman-bold {
-  font-family: 'Goldman', sans-serif;
-  font-weight: 700;
+@font-face {
+  font-family: Cyber;
+  src: url('https://assets.codepen.io/605876/Blender-Pro-Bold.otf');
+  font-display: swap;
 }
-
-
-body,html {
-  margin: 0;
-  font: bold 14px/1.4 'Open Sans', arial, sans-serif;
-  background: #000;
-  color: white;
-  display: grid;
-  background-image: linear-gradient(rgba(51, 51, 51, .7) .1em, transparent .1em), linear-gradient(90deg, rgba(51, 51, 51, 0.7) .1em, transparent .1em);
-  background-size: 3em 3em;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(191, 0, 255, 0.2) .1em, transparent .1em),
-    linear-gradient(90deg, rgba(255, 0, 255, 0.2) .1em, transparent .1em);
-  background-size: 3em 3em;
-  mix-blend-mode: screen;
-  filter: blur(3px);
-  z-index: 0;
-  pointer-events: none; 
-}
-
-
 
 .cyberpunk-frame {
   margin: 3rem 20rem;
@@ -44,101 +16,6 @@ body::before {
     0 0 20px rgb(84, 41, 202),
     inset 0 0 10px rgb(60, 27, 208);
   max-width: 700px;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-/*@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}*/
-
-
-
-ul { 
-  margin: 2px auto 0; 
-  padding: 0; 
-  list-style: none; 
-  display: table;
-  width: 600px;
-  text-align: center;
-}
-li { 
-  display: table-cell; 
-  position: relative; 
-  padding: 15px 0;
-}
-a {
-  font-family: goldman;
-  color: #fff;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 0.15em;
-  
-  display: inline-block;
-  padding: 15px 20px;
-  position: relative;
-}
-a:after {    
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  background: #fff;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
-}
-a:hover:after { 
-  width: 100%; 
-  left: 0; 
-}
-@media screen and (max-height: 300px) {
-	ul {
-		margin-top: 40px;
-	}
-}
-
-
-
-@font-face {
-  font-family: Cyber;
-  src: url('https://assets.codepen.io/605876/Blender-Pro-Bold.otf');
-  font-display: swap;
 }
 
 .naslov {display: block;       
@@ -197,7 +74,6 @@ text-shadow: 0.05em 0 0 rgba(255, 0, 230, 0.75),
   opacity: 0.7;
 }
 
-/* https://web.dev/prefers-reduced-motion/#(bonus)-forcing-reduced-motion-on-all-websites */
 
 @keyframes glitch {
   0% {
@@ -318,67 +194,3 @@ text-shadow: 0.05em 0 0 rgba(255, 0, 230, 0.75),
 .submit-btn:active {
   transform: scale(0.97);
 }
-
-/* Optional: Disable animation for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .submit-btn::before,
-  .submit-btn::after {
-    animation: none;
-    opacity: 0;
-  }
-  .submit-btn:hover .btn-text {
-    opacity: 1;
-  }
-}
-
-/* Container za sve događaje */
-.events-container {
-  display: flex;
-  flex-wrap: wrap;       /* da idu u novi red ako nema mesta */
-  gap: 20px;             /* razmak između box-ova */
-  justify-content: flex-start;
-  padding: 10px;
-}
-
-/* Pojedinačni box / kartica */
-.event-card {
-   flex: 0 0 200px;       /* fiksna širina, neće rasti */
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  padding: 10px;
-  width: 200px;          /* fiksna širina za box */
-  background-color: #000000;
-  transition: transform 0.2s;
-  box-sizing: border-box;
-}
-
-.event-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Slika u box-u */
-.event-card img {
-  width: 100%;
-  height: 120px;         /* smanjena visina */
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 8px;
-}
-
-/* Naslov događaja */
-.event-card h3 {
-  font-size: 1rem;
-  margin-bottom: 5px;
-}
-
-/* Ostali tekst */
-.event-card p {
-  font-size: 0.875rem;
-  margin: 2px 0;
-}
-
-
-/*Life is not a waste a time and time is not a waste of life. So let's stop wasting time and have the time of our life*/

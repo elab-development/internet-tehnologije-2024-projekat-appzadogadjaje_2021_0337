@@ -17,7 +17,7 @@ export default function Dogadjaj({ event, isAdmin, onDelete, onEdit }) {
 
       if (res.ok) {
         alert("Događaj obrisan!");
-        onDelete(event.id); // poziv funkcije iz roditelja da osveži listu
+        onDelete(event.id);
       } else {
         alert("Greška: " + data.message);
       }
@@ -43,16 +43,15 @@ export default function Dogadjaj({ event, isAdmin, onDelete, onEdit }) {
         )}
 
         {isAdmin && (
-          <div style={{ marginTop: "10px" }}>
-            <button
+          <div class="dugmici">
+            <button class="dugmence dugmence--delete"
               onClick={handleDelete}
-              style={{ marginRight: "10px", backgroundColor: "red", color: "white", padding: "5px 10px", borderRadius: "5px" }}
+              
             >
               Obriši
             </button>
-            <button
+            <button class="dugmence dugmence--edit"
               onClick={() => onEdit(event)}
-              style={{ backgroundColor: "blue", color: "white", padding: "5px 10px", borderRadius: "5px" }}
             >
               Izmeni
             </button>

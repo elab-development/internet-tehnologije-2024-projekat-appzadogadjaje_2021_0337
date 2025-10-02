@@ -69,7 +69,7 @@ export default function Login() {
                 {message && <p class="message">{message}</p>}
                 </div>
                 <button onClick={handleLogin} class="dugme">
-                  ULOGOJ SE
+                  ULOGUJ SE
                 </button>
                
               

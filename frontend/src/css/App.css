@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+@import url('https://unpkg.com/normalize.css') layer(normalize);
 
 .goldman-bold {
   font-family: 'Goldman', sans-serif;
@@ -20,285 +21,210 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(rgba(191, 0, 255, 0.2) .1em, transparent .1em),
     linear-gradient(90deg, rgba(255, 0, 255, 0.2) .1em, transparent .1em);
   background-size: 3em 3em;
   mix-blend-mode: screen;
   filter: blur(3px);
   z-index: 0;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
-/* Container za sve događaje */
 .events-container {
   display: flex;
-  flex-wrap: wrap;   
-  gap: 20px;             /* razmak između box-ova */
+  flex-wrap: wrap;
+  gap: 30px;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 15px;
+  margin-left: 1.3rem;
 }
 
-/* Pojedinačni box / kartica */
 .event-card {
-   flex: 0 0 200px;       /* fiksna širina, neće rasti */
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  padding: 10px;
-  width: 200px;          /* fiksna širina za box */
-  background-color: #000000;
+  padding: 0 20px;
+  width: 420px;
+  height: 550px;
   transition: transform 0.2s;
   box-sizing: border-box;
+  font-family: 'Cyber',sans-serif;
+   position: relative;
+   z-index: 1;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: rgb(80, 30, 230);
+  clip-path: polygon(
+    26% 0,
+    66% 0,
+    92% 0,
+    100% 8%,
+    100% 89%,
+    91% 100%,
+    7% 100%,
+    0 92%,
+    0 0
+  );
+  z-index: -10;
+}
+
+.event-card::after {
+  content: "";
+  position: absolute;
+  top: 4px; left: 4px; right: 4px; bottom: 4px;
+  background: #000000;
+  opacity: 90%;
+  clip-path: polygon(
+    26% 0,
+    66% 0,
+    92% 0,
+    100% 8%,
+    100% 89%,
+    91% 100%,
+    7% 100%,
+    0 92%,
+    0 0
+  );
+  z-index: -1;
+  box-shadow:
+    0 0 20px rgb(82, 25, 180),
+    0 0 20px rgb(84, 41, 202),
+    inset 0 0 20px rgb(60, 27, 208);
+    font-family: 'Cyber',sans-serif;
 }
 
 .event-card:hover {
   transform: translateY(-5px);
 }
 
-/* Slika u box-u */
 .event-card img {
   width: 100%;
-  height: 120px;         /* smanjena visina */
+  height: 14rem;        
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 8px;
 }
 
-/* Naslov događaja */
 .event-card h3 {
-  font-size: 1rem;
-  margin-bottom: 5px;
-}
+  font-size: 2.2rem;
+  margin-bottom: 0px;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 230, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+    0.025em 0.05em 0 rgba(88, 9, 148, 0.75);}
 
-/* Ostali tekst */
+
 .event-card p {
-  font-size: 0.875rem;
+  font-size: 1.4rem;
   margin: 2px 0;
 }
 
 
 
-@import url('https://unpkg.com/normalize.css') layer(normalize);
+.dodaj{
+  border-radius: 100%;
+  width: 5.5rem;
+  height: 5.5rem;
+  font-size: 4.5rem;
+  color: rgb(80, 30, 230);
+  background: transparent;
+  backdrop-filter: blur(3px);
+  border: 3px solid rgb(80, 30, 230);
+  box-shadow:
+    0 0 10px rgb(82, 25, 180),
+    0 0 20px rgb(84, 41, 202),
+    inset 0 0 10px rgb(60, 27, 208);
 
-
-
-:root {
-  --accent: hsl(260, 57%, 79%);
-  --flicker: linear(
-    0 0%,     0.1864 6.17%,      0.0001 14.41%,      0.5244 20.97%,      0.3927 37.91%,      0.8115 60.62%,     0.9416 61.92%,
-    0.9928 67.98%,       0.5032 70.42%,      0.9077 96.96%,      0.6736 98.74%,      1 100%
-  );
-    --corner: 12px; /* Za kutni rez */
-  --border: 2px; /* Debljina linije */
-   --clip: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% + var(--border)), /* Desna ivica do malo ispod */
-    calc(100% - var(--corner)) 100%,
-    0% 100%
-  );
-}
-
-.modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width:700px;
-  min-height: 400px;
-  font-family: 'Cyber', sans-serif;
-  color: var(--accent);
-  overflow: visible;
-  z-index: 999;
-  font-size: 25px;
-
-
-  transition-property: display, overlay;
-  transition-duration: 1s;
-  transition-behavior: allow-discrete;
-  transition-timing-function: ease-out;
+  bottom: 40px;
+  right: 30px; 
+  z-index: 1000;
+  cursor: pointer;
 }
 
-.modal[data-action] {
-    --base-delay: 0.35s;
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 55px; 
 }
 
-.modal::before,
-.modal::after {
-  content: '';
-  position: absolute;
-  top: 1px;
-  bottom: 1px;
-  right: 100%;
-  width: 1rem;
-  border: var(--border) solid var(--accent);
-  backdrop-filter: saturate(180%) blur(6px);
-  translate: -25% 0;
-  opacity: 0;
+.pagination span {
+    font-family: 'Goldman', sans-serif;
+    color: white;
+    font-size: 1.1rem;
+    padding: 0 15px;
+    letter-spacing: 1px;
 }
 
-.modal::before {
-  background: var(--accent);
-  mask: linear-gradient(#fff, hsl(0 0% 100% / 0.6) 15% 95%, #fff);
+.pagination button {
+    font-family: 'Goldman', sans-serif;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent); 
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(82, 25, 180, 0.5);
+    transition: all 0.2s ease;
 }
 
-.modal__body {
-  clip-path: inset(0 calc(100% + (2 * var(--border))) 0 0);
-  transition-duration: 0.26s;
-  transition-delay: calc(var(--base-delay) + 0.075s);
-  height: 500px;
-}
-
-.body__content {
-  padding: 1rem;
-  position: relative;
-  clip-path: inset(0 calc(100% + (2 * var(--border))) 0 0);
-
-   display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.body__backdrop {
-  position: absolute;
-  inset: 0;
-  translate: calc(-100% - (2 * var(--border))) 0;
-
-  
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+.pagination button:hover:not(:disabled) {
     background: var(--accent);
-    translate: 0 0;
-    border: var(--border) solid #0000; /* Stvara prostor za masku */
-    clip-path: var(--clip); 
-    mask: linear-gradient(#0000 0% 100%), linear-gradient(#fff 0% 100%);
-    mask-clip: padding-box, border-box;
-    mask-repeat: no-repeat;
-    mask-composite: intersect;
-    z-index: 2;
-    backdrop-filter: blur(3px);
-
-      background: #f0f0f0; 
-     border: var(--border) solid var(--accent);
-     clip-path: var(--clip);
-  }
+    color: black;
+    box-shadow: 0 0 15px var(--accent);
 }
 
-.modal__actions {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  padding-block: 1rem;
-  opacity: 0;
-  translate: -24px 0;
-
-}
-
-@keyframes flicker {
-  0% { opacity: 0; translate: -2px 0; }
-  20% { opacity: 0.8; translate: 2px 0; }
-  40% { opacity: 0.3; translate: -1px 0; }
-  60% { opacity: 1; translate: 1px 0; }
-  80% { opacity: 0.5; translate: -2px 0; }
-  100% { opacity: 1; translate: 0 0; }
-}
-.modal.active {
-  opacity: 1;
-  transition-duration: 1s;
-}
-
-.modal.active::before,
-.modal.active::after {
-  opacity: 1;
-  translate: var(--border) 0;
-  animation-delay: 0.2s;
-  transition-delay: 0s;
-}
-
-.modal.active::before {
-  animation: flicker 0.625s var(--flicker) none;
-}
-
-.modal.active .body__backdrop {
-  translate: 0 0;
-  transition-delay: 0.22s;
-}
-
-.modal.active .modal__body,
-.modal.active .body__content {
-  clip-path: inset(0 calc(var(--border) * -1) 0 0);
-  transition-delay: 0.22s;
+.pagination button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: gray;
+    color: gray;
 }
 
 
-.modal.active .body__text {
-  translate: 0 0;
-  opacity: 1;
-    transition-delay: 0.325s;
-    padding-bottom: 2rem;
-}
 
-.modal.active .modal__actions {
-  translate: 0 0;
-  opacity: 1;
-  transition-delay: 0.5s;
-}
 
-.input-box,
-.modal input[type="email"],
-.modal input[type="password"] {
-    background: #f0f0f0; 
-    border: 1px solid #333;
-    color: black; 
-    padding: 0.75rem;
-    width: 60%;
-    box-sizing: border-box;
-    margin-bottom: 1rem; 
-    font-family: 'Cyber', sans-serif;
-    font-size: 1rem;
-}
-.dugme{
-    font-family: 'Cyber', sans-serif; 
-    background: transparent; 
-    border: var(--border) solid var(--accent); 
-    color: white;
-    font-size: 40px;
-    margin-left: 15rem;
-    position: absolute;
-    bottom:100px;
-}
 
-.dugme:hover {
-    background: #590cb7;
-    color: white;
-    box-shadow: 0 0 12px var(--accent);
-}
-
-.input-field{
+.category-filter {
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
-
+    gap: 10px;
+    font-family: 'Cyber', sans-serif;
+    color: var(--accent);
+    font-size: 1.5rem;
 }
 
-.input-label{
-  font-size: 1.8rem;
-  min-width: 15rem;
+.select-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
-.message{
-  font-size: 2rem;
-  color: red;
+.category-filter select {
+    background-color: transparent; 
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: 10px 30px 10px 10px; 
+    border-radius: 0;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Goldman', sans-serif;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease;
 }
 
-/*Life is not a waste a time and time is not a waste of life. So let's stop wasting time and have the time of our life*/
+.category-filter select:hover {
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.category-filter option {
+    background-color: #1a1a1a; 
+    color: var(--accent);
+}

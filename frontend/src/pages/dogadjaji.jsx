@@ -6,7 +6,6 @@ export default function Dogadjaji() {
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
 
-  // Filter
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -24,7 +23,7 @@ export default function Dogadjaji() {
     image: "",
   });
 
-  // Dohvati sve događaje sa backend-a (paginacija)
+  
   useEffect(() => {
     fetchEvents(currentPage);
   }, [currentPage]);
@@ -41,7 +40,7 @@ export default function Dogadjaji() {
     }
   };
 
-  // Dohvati kategorije (samo ako je user ulogovan)
+
   useEffect(() => {
     if (!user) return;
     const fetchCategories = async () => {
@@ -118,122 +117,159 @@ export default function Dogadjaji() {
     }
   };
 
-  // ⬇️ Filterirano po kategoriji (client-side)
+
   const filteredEvents = selectedCategory
     ? events.filter((e) => e.category === selectedCategory)
     : events;
 
+
   return (
     <div>
-      {/* Filter samo za ulogovane korisnike */}
-      {user && (
-        <div style={{ marginBottom: "20px" }}>
+       {user && (
+         <div className="category-filter"> 
           <label>
-            Filtriraj po kategoriji:{" "}
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-            >
-              <option value="">Sve kategorije</option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.name}>
-                  {cat.name}
-                </option>
+             Filtriraj po kategoriji:{" "}
+
+            <div className="select-wrapper"> 
+                 <select
+                 value={selectedCategory}
+                 onChange={(e) => setSelectedCategory(e.target.value)} >
+                 <option value="">Sve kategorije</option>
+                {categories.map((cat) => (
+                 <option key={cat.id} value={cat.name}>
+                 {cat.name}
+              </option>
               ))}
-            </select>
-          </label>
-        </div>
+             </select>
+            </div> 
+           </label>
+         </div>
       )}
 
-      {/* Dugme za dodavanje događaja (samo admin) */}
       {user && user.role === "admin" && (
         <button
-          style={{ marginBottom: "20px", background: "orange" }}
+          class="dodaj"
           onClick={handleShowForm}
         >
-          {editingEvent ? "Izmeni Događaj" : "Dodaj Događaj"}
+          {editingEvent ? "Izmeni Događaj" : "+"}
         </button>
       )}
 
-      {/* Forma za dodavanje / edit */}
-      {showForm && (
-        <div
-          style={{
-            padding: "20px",
-            marginBottom: "20px",
-            border: "1px solid gray",
-            borderRadius: "8px",
-            backgroundColor: "#f9f9f9",
-          }}
-        >
-          <h3>{editingEvent ? "Izmeni događaj" : "Kreiraj novi događaj"}</h3>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Naziv događaja"
-              value={newEvent.event}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, event: e.target.value })
-              }
-              required
-            />
-            <input
-              type="text"
-              placeholder="Mesto"
-              value={newEvent.place}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, place: e.target.value })
-              }
-              required
-            />
-            <input
-              type="datetime-local"
-              placeholder="Datum i vreme"
-              value={newEvent.event_start}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, event_start: e.target.value })
-              }
-              required
-            />
-            <input
-              type="text"
-              placeholder="Kategorija"
-              value={newEvent.category}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, category: e.target.value })
-              }
-              required
-            />
-            <input
-              type="text"
-              placeholder="Lokacija"
-              value={newEvent.location}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, location: e.target.value })
-              }
-              required
-            />
-            <input
-              type="text"
-              placeholder="URL slike"
-              value={newEvent.image}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, image: e.target.value })
-              }
-            />
-            <div style={{ marginTop: "10px" }}>
-              <button type="submit" style={{ marginRight: "10px" }}>
-                Sačuvaj
-              </button>
-              <button type="button" onClick={handleCloseForm}>
-                Otkaži
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+       {showForm && (
+         <div className="form-backdrop" onClick={handleCloseForm}> 
+            <div 
+                className="modal active form-modal" 
+                data-action="open"
+                onClick={(e) => e.stopPropagation()}>
+                <div className="modal__body">
+                    <div className="body__backdrop"></div>
+                    <div className="body__content">
+                        <h3>{editingEvent ? "IZMENI DOGAĐAJ" : "KREIRAJ NOVI DOGAĐAJ"}</h3>
+                        <form onSubmit={handleSubmit}>
+                        <div className="input-field">
+                            <label className="input-label">Naziv:</label>
+                            <input
+                            type="text"
+                            placeholder="Naziv događaja"
+                            value={newEvent.event}
+                            onChange={(e) =>
+                                setNewEvent({ ...newEvent, event: e.target.value })
+                            }
+                            required
+                            />
+                        </div>
 
-      {/* Lista događaja */}
+                        <div className="input-field">
+                            <label className="input-label">Mesto:</label>
+                            <input
+                            type="text"
+                            placeholder="Mesto"
+                            value={newEvent.place}
+                            onChange={(e) =>
+                                setNewEvent({ ...newEvent, place: e.target.value })
+                            }
+                            required
+                            />
+                        </div>
+                        
+                        <div className="input-field">
+                            <label className="input-label">Datum:</label>
+                            <input
+                            type="datetime-local"
+                            placeholder="Datum i vreme"
+                            value={newEvent.event_start}
+                            onChange={(e) =>
+                                setNewEvent({ ...newEvent, event_start: e.target.value })
+                            }
+                            required
+                            />
+                        </div>
+                        
+                        <div className="input-field">
+                            <label className="input-label">Kategorija:</label>
+                            <input
+                            type="text"
+                            placeholder="Kategorija"
+                            value={newEvent.category}
+                            onChange={(e) =>
+                                setNewEvent({ ...newEvent, category: e.target.value })
+                            }
+                            required
+                            />
+                        </div>
+                        
+                        <div className="input-field">
+                            <label className="input-label">Lokacija:</label>
+                            <input
+                            type="text"
+                            placeholder="Lokacija"
+                            value={newEvent.location}
+                            onChange={(e) =>
+                                setNewEvent({ ...newEvent, location: e.target.value })
+                            }
+                            required
+                            />
+                        </div>
+                        
+                        <div className="input-field">
+                            <label className="input-label">Slika URL:</label>
+                            <input
+                            type="text"
+                            placeholder="URL slike"
+                            value={newEvent.image}
+                            onChange={(e) =>
+                                setNewEvent({ ...newEvent, image: e.target.value })
+                            }
+                            />
+                        </div>
+
+                        <div className="modal__actions" style={{position: 'relative', top: 'initial', padding: '10px 0'}}>
+                            <button type="submit" className="dugme" style={{fontSize: '1.2rem', padding: '10px 20px', marginLeft: '0'}}>
+                                Sačuvaj
+                            </button>
+                            <button 
+                                type="button" 
+                                onClick={handleCloseForm} 
+                                className="dugme" 
+                                style={{
+                                    fontSize: '1.2rem', 
+                                    padding: '10px 20px', 
+                                    marginLeft: '10px', 
+                                    background: 'gray', 
+                                    borderColor: 'gray'
+                                }}
+                            >
+                                Otkaži
+                            </button>
+                        </div>
+                        
+                        </form>
+                    </div> 
+                </div>
+            </div> 
+          </div> 
+)}
+
       <div className="events-container">
         {filteredEvents.map((event) => (
           <Dogadjaj
@@ -246,7 +282,6 @@ export default function Dogadjaji() {
         ))}
       </div>
 
-      {/* Pagination */}
       {!selectedCategory && (
         <div className="pagination">
           <button

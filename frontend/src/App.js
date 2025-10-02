@@ -1,6 +1,7 @@
 import "./css/App.css"; 
-import "./css/navBar.css"
+import "./css/navBar_footer.css"
 import "./css/animacija.css"
+import "./css/forme.css";
 import NavBar from "./components/navBar";
 import Home from "./pages/home";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
@@ -8,8 +9,13 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Dogadjaji from "./pages/dogadjaji";
 import ChangePassword from "./pages/promenaLozinke"
+import Footer from "./components/footer";
+
+
+
 function App() {
    return ( 
+     <div>
         <BrowserRouter>
         <NavBar />
          <Routes>
@@ -20,8 +26,8 @@ function App() {
           <Route path="/promenaLozinke" element={<ChangePassword />} />
         </Routes>
         </BrowserRouter> 
-
-
+        <Footer />
+        </div>
    ); 
   } 
   export default App;

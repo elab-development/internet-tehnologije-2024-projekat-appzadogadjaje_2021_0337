@@ -1,0 +1,81 @@
+ul { 
+  margin: 2px auto 0; 
+  padding: 0; 
+  list-style: none; 
+  display: table;
+  width: 600px;
+  text-align: center;
+}
+li { 
+  display: table-cell; 
+  position: relative; 
+  padding: 15px 0;
+}
+a {
+  font-family: goldman;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+@media screen and (max-height: 300px) {
+	ul {
+		margin-top: 40px;
+	}
+}
+
+/* Glavni Footer Kontejner */
+.cyber-footer {
+    position: fixed; /* Fiksirano na dnu viewport-a */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 3px;
+    /* Transparentna pozadina da se vidi grid */
+    background: transparent; 
+    backdrop-filter: blur(4px);
+    
+    /* Koristite neki font koji imate (npr. 'Cyber' ili 'Goldman') */
+    font-family: 'Goldman', sans-serif; 
+    
+    color: var(--accent);
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    z-index: 1000;
+}
+
+/* Dekorativna Gornja Linija */
+.footer-line {
+    width: 90%;
+    margin: 0 auto 10px auto;
+    height: var(--border); 
+    background: rgb(80, 30, 230); 
+    box-shadow: 0 0 5px var(--accent);
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); /* Lagani zarubljeni rubovi linije */
+}
+
+.footer-text {
+    margin: 0;
+    text-transform: uppercase;
+}

@@ -29,7 +29,6 @@ function NavBar() {
         {token && (
           <>
             <li><a href="/promenaLozinke">Promeni lozinku</a></li>
-            {role === "admin" && <li><a href="/admin">Admin panel</a></li>}
             <li>
               <a href="#" onClick={handleLogout}>Logout</a>
             </li>

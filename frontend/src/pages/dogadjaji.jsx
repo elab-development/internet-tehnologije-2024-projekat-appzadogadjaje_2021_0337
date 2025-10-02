@@ -151,7 +151,7 @@ export default function Dogadjaji() {
           class="dodaj"
           onClick={handleShowForm}
         >
-          {editingEvent ? "Izmeni Događaj" : "+"}
+          {editingEvent ? "+" : "+"}
         </button>
       )}
 

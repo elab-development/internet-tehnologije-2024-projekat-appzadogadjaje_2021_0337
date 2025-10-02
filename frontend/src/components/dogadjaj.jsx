@@ -45,14 +45,11 @@ export default function Dogadjaj({ event, isAdmin, onDelete, onEdit }) {
         {isAdmin && (
           <div class="dugmici">
             <button class="dugmence dugmence--delete"
-              onClick={handleDelete}
-              
-            >
+              onClick={handleDelete}>
               Obriši
             </button>
             <button class="dugmence dugmence--edit"
-              onClick={() => onEdit(event)}
-            >
+              onClick={() => onEdit(event)}>
               Izmeni
             </button>
           </div>

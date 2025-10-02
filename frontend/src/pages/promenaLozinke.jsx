@@ -38,11 +38,8 @@ export default function ChangePassword() {
         setMessage(data.message);
         setCurrentPassword("");
         setNewPassword("");
-        setNewPasswordConfirm("");
-        // opcionalno: redirect nakon uspešne promene
-        // navigate("/dogadjaji");
+        setNewPasswordConfirm("")
       } else {
-        // backend šalje ili message ili errors
         const backendMessage = data.message || Object.values(data.errors || {}).flat().join(", ");
         setMessage(backendMessage);
       }

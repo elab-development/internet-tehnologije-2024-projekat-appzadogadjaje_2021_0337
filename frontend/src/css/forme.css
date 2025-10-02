@@ -189,7 +189,7 @@
     font-size: 40px;
     margin-left: 15rem;
     position: absolute;
-    bottom:100px;
+    bottom:70px;
     cursor: pointer;
 }
 
@@ -213,8 +213,9 @@
 }
 
 .message{
-  font-size: 2rem;
+  font-size: 1.9rem;
   color: red;
+  margin-top: -17px;
 }
 
 

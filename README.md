@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gde sad - README</title>
 </head>
 <body>
 
@@ -11,55 +10,65 @@
 
 <h1 align="center">Gde sad</h1>
 <p align="center">
-  Web application for managing and displaying events with Laravel backend, React frontend, and automated Node.js scraping.
+  Veb aplikacija za upravljanje i prikaz događaja sa Laravel bekendom, React frontend-om i automatskim Node.js skrejpingom.
   <br>
-  <a href="https://github.com/your_username/gde-sad"><strong>Explore the repo »</strong></a>
-  <br><br>
-  <a href="https://github.com/your_username/gde-sad">View Demo</a> &middot;
-  <a href="https://github.com/your_username/gde-sad/issues/new?labels=bug">Report Bug</a> &middot;
-  <a href="https://github.com/your_username/gde-sad/issues/new?labels=enhancement">Request Feature</a>
 </p>
 
 <details>
-  <summary><strong>Table of Contents</strong></summary>
+  <summary><strong>Sadržaj</strong></summary>
   <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#built-with">Built With</a></li>
-    <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#about-the-project">O projektu</a></li>
+    <li><a href="#built-with">Tehnologije</a></li>
+    <li><a href="#getting-started">Početak rada</a></li>
+    <li><a href="#usage">Korišćenje</a></li>
   </ol>
 </details>
 
-<h2 id="about-the-project">About The Project</h2>
+<h2 id="about-the-project">O projektu</h2>
 <p>
-  Gde sad is a full-stack event management application. Users can view, filter, and search events. The backend is built with Laravel (REST API), frontend with React, and data can be scraped automatically using a Node.js script.
+  Gde sad je full-stack aplikacija za upravljanje događajima. Korisnici mogu pregledati, filtrirati i pretraživati događaje. Backend je napravljen u Laravel-u (REST API), frontend u React-u, a podaci se mogu automatski ažurirati pomoću Node.js skripte.
 </p>
 <ul>
-  <li>User authentication and roles</li>
-  <li>Event filtering and search</li>
-  <li>Automated scraping of events</li>
-  <li>RESTful API with Laravel</li>
-  <li>Responsive frontend in React</li>
+  <li>Autentifikacija korisnika i uloge</li>
+  <li>Filtriranje i pretraga događaja</li>
+  <li>Automatsko skrejpovanje događaja</li>
+  <li>RESTful API sa Laravel-om</li>
+  <li>Responsivni frontend u React-u</li>
 </ul>
 
-<h2 id="built-with">Built With</h2>
+<h2 id="built-with">Tehnologije</h2>
 <ul>
-  <li><a href="https://reactjs.org/">React.js</a> – Frontend</li>
-  <li><a href="https://laravel.com">Laravel</a> – Backend API</li>
-  <li><a href="https://nodejs.org/">Node.js</a> – Scraping script</li>
-  <li><a href="https://getbootstrap.com">Bootstrap</a> – Styling</li>
-  <li><a href="https://www.mysql.com/">MySQL</a> – Database</li>
+  <li>
+    <a href="https://reactjs.org/">
+      <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+
+  </li>
+  <li>
+    <a href="https://laravel.com">
+      <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel" />
+  </li>
+  <li>
+    <a href="https://nodejs.org/">
+      <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+   
+  </li>
+  <li>
+    <a href="https://www.mysql.com/">
+      <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+
+  </li>
+  <li>
+  <a href="https://pptr.dev/">
+    <img src="https://img.shields.io/badge/Puppeteer-000000?style=for-the-badge&logo=puppeteer&logoColor=white" alt="Puppeteer" />
+</li>
 </ul>
 
-<h2 id="getting-started">Getting Started</h2>
-<p>Follow these steps to set up the project locally.</p>
 
-<h3>Prerequisites</h3>
+
+<h2 id="getting-started">Početak rada</h2>
+<p>Prati sledeće korake da pokreneš projekat lokalno.</p>
+
+<h3>Preuzeti</h3>
 <ul>
   <li>Node.js & npm
     <pre><code>npm install npm@latest -g</code></pre>
@@ -67,82 +76,47 @@
   <li>PHP & Composer
     <pre><code>composer install</code></pre>
   </li>
-  <li>MySQL or MariaDB</li>
+  <li>MySQL ili MariaDB</li>
 </ul>
 
-<h3>Installation</h3>
+<h3>Instalacija</h3>
 <ol>
-  <li>Clone the repo
+  <li>Kloniraj repozitorijum
     <pre><code>git clone https://github.com/your_username/gde-sad.git</code></pre>
   </li>
-  <li>Install backend dependencies
+  <li>Instaliraj backend zavisnosti
     <pre><code>cd backend
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed</code></pre>
   </li>
-  <li>Install frontend dependencies
+  <li>Instaliraj frontend zavisnosti
     <pre><code>cd ../frontend
 npm install</code></pre>
   </li>
-  <li>Start frontend
+  <li>Pokreni frontend
     <pre><code>npm start</code></pre>
   </li>
-  <li>Start backend
+  <li>Pokreni backend
     <pre><code>php artisan serve</code></pre>
   </li>
-  <li>(Optional) Run scraping script
+  <li>(Opcionalno) Pokreni skriptu za skrejping
     <pre><code>cd ../scraper
 node scrape.js</code></pre>
   </li>
 </ol>
 
-<h2 id="usage">Usage</h2>
+<h2 id="usage">Korišćenje</h2>
 <ul>
-  <li>Visit the frontend at <code>http://localhost:3000</code></li>
-  <li>Log in with seeded users</li>
-  <li>Explore events, filter, search, and view details</li>
-  <li>Scraping script updates events automatically from external sources</li>
-</ul>
-
-<h2 id="roadmap">Roadmap</h2>
-<ul>
-  <li>Backend REST API ✔</li>
-  <li>Frontend React App ✔</li>
-  <li>Node.js scraping ✔</li>
-  <li>Pagination & advanced filtering</li>
-  <li>File uploads for events</li>
-  <li>User roles & access control</li>
-  <li>Data export and search improvements</li>
-</ul>
-
-<h2 id="contributing">Contributing</h2>
-<p>Contributions are welcome!</p>
-<ol>
-  <li>Fork the Project</li>
-  <li>Create your Feature Branch <code>git checkout -b feature/AmazingFeature</code></li>
-  <li>Commit your Changes <code>git commit -m 'Add some AmazingFeature'</code></li>
-  <li>Push to the Branch <code>git push origin feature/AmazingFeature</code></li>
-  <li>Open a Pull Request</li>
-</ol>
-
-<h2 id="license">License</h2>
-<p>Distributed under the Unlicense License. See <code>LICENSE.txt</code> for more information.</p>
-
-<h2 id="contact">Contact</h2>
-<p>Tijana Topalović – <a href="https://linkedin.com/in/your_linkedin">LinkedIn</a> – your_email@example.com</p>
-<p>Project Link: <a href="https://github.com/your_username/gde-sad">https://github.com/your_username/gde-sad</a></p>
-
-<h2 id="acknowledgments">Acknowledgments</h2>
-<ul>
-  <li><a href="https://choosealicense.com">Choose an Open Source License</a></li>
-  <li><a href="https://shields.io">Img Shields</a></li>
-  <li><a href="https://react-icons.github.io/react-icons/search">React Icons</a></li>
+  <li>Pokreni XAMPP i startuj Apache i MySQL server.</li>
+  <li>U Laravel backend folderu pokreni <code>php artisan serve</code> (podrazumevano <code>http://localhost:8000</code>).</li>
+  <li>U React frontend folderu pokreni <code>npm start</code> (podrazumevano <code>http://localhost:3000</code>).</li>
+  <li>Frontend komunicira sa backend API-jem na <code>http://localhost:8000</code>.</li>
+  <li>Prijavi se koristeći seedovane korisnike.</li>
+  <li>Istraži događaje: pregled, filtriranje, pretraga i detalji.</li>
+  <li>Node.js skripta za skrejping automatski ažurira događaje iz eksternih izvora.</li>
 </ul>
 
 </body>
 </html>
-
-
-

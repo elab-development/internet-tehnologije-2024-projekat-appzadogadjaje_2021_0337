@@ -4,18 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gde sad - README</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 900px; margin: auto; background: #f9f9f9; color: #333; }
-    h1, h2, h3 { color: #2c3e50; }
-    a { color: #2980b9; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    pre { background: #eee; padding: 10px; overflow-x: auto; }
-    code { background: #eee; padding: 2px 4px; border-radius: 4px; }
-    img { max-width: 100%; }
-    ul { margin-left: 20px; }
-    ol { margin-left: 20px; }
-    details { margin-bottom: 10px; }
-  </style>
 </head>
 <body>
 
@@ -155,5 +143,6 @@ node scrape.js</code></pre>
 
 </body>
 </html>
+
 
 

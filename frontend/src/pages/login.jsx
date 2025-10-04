@@ -38,7 +38,7 @@ export default function Login() {
       setMessage("Network error: " + err.message);
     }
   };
-
+//komm
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsModalOpen(true);

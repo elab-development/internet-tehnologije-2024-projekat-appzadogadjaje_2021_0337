@@ -11,40 +11,66 @@ use App\Models\Location;
 
 class EventController extends Controller
 {
-    public function index()
-    {
-        try {
-            $perPage = 10;
-            $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-            $offset = ($page - 1) * $perPage;
+   public function index(Request $request)
+{
+    try {
+        $perPage = 10;
+        // Dohvat parametara
+        $page = $request->query('page', 1);
+        $filter = $request->query('filter'); // Za filtriranje po nazivu
+        $sort = $request->query('sort', 'name_asc'); // Za sortiranje
 
-            $total = DB::table('events')->count();
+        // 1. Inicijalizacija Query Builder-a sa JOIN-ovima i selekcijom kolona
+        $query = DB::table('events as e')
+            ->select(
+                'e.id', 
+                'e.place', 
+                'e.event', 
+                'e.event_start', 
+                'e.image', 
+                'l.adress', 
+                'c.name as category'
+            )
+            ->join('locations as l', 'e.location_id', '=', 'l.id')
+            ->join('categories as c', 'e.category_id', '=', 'c.id');
 
-            $events = DB::select(
-                'SELECT e.id, e.place, e.event, e.event_start, e.image, l.adress, c.name as category
-                 FROM events e 
-                 JOIN locations l ON e.location_id = l.id 
-                 JOIN categories c ON e.category_id = c.id 
-                 ORDER BY e.event_start ASC 
-                 LIMIT ? OFFSET ?', 
-                [$perPage, $offset]
-            );
-
-            return response()->json([
-                'current_page' => $page,
-                'per_page' => $perPage,
-                'total' => $total,
-                'last_page' => ceil($total / $perPage),
-                'data' => $events,
-            ]);
-        } catch (\Throwable $e) {
-            return response()->json([
-                'error' => true,
-                'message' => 'Greska prilikom dohvatanja dogadjaja.',
-                'details' => $e->getMessage()
-            ], 500);
+        // 2. Primena Filter uslova
+        if ($filter) {
+            // Dodaje WHERE e.event LIKE '%filter_value%'
+            $query->where('e.event', 'LIKE', "%{$filter}%");
         }
+
+        // 3. Primena Sortiranja
+        if($sort=='name_desc'){
+            $query->orderBy('e.event', 'DESC');
+        }
+        else{
+         $query->orderBy('e.event', 'ASC');
+        }
+
+        // 4. Brojanje ukupnog broja rezultata (sa filterom, bez LIMIT/OFFSET)
+        $total = $query->count();
+        $offset = ($page - 1) * $perPage;
+
+        // 5. Primena Paginacije (LIMIT/OFFSET)
+        $events = $query->offset($offset)->limit($perPage)->get();
+
+        return response()->json([
+            'current_page' => (int) $page,
+            'per_page' => $perPage,
+            'total' => $total,
+            'last_page' => ceil($total / $perPage),
+            'data' => $events,
+        ]);
+
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error' => true,
+            'message' => 'Greška prilikom dohvatanja događaja.',
+            'details' => $e->getMessage()
+        ], 500);
     }
+}
 
     public function show($id)
     {

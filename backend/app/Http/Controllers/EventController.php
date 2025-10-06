@@ -183,31 +183,52 @@ class EventController extends Controller
         }
     }
 
-    public function showByCategory($categoryName)
-    {
-        try {
-            $category = Category::where('name', $categoryName)->first();
+    public function showByCategory(Request $request, $categoryName)
+{
+    try {
+        // 1. Pronađi kategoriju
+        $category = Category::where('name', $categoryName)->first();
 
-            if (!$category) {
-                return response()->json(['message' => 'Kategorija nije pronađena'], 404);
-            }
-
-            $event = DB::select(
-                'SELECT e.id, e.place, e.event, e.event_start, e.image, l.adress, c.name as category 
-                 FROM events e 
-                 JOIN locations l ON e.location_id = l.id 
-                 JOIN categories c ON e.category_id = c.id 
-                 WHERE e.category_id = ?', 
-                [$category->id]
-            );
-
-            return response()->json($event);
-        } catch (\Throwable $e) {
-            return response()->json([
-                'error' => true,
-                'message' => 'Greska prilikom prikaza dogadjaja po kategoriji.',
-                'details' => $e->getMessage()
-            ], 500);
+        if (!$category) {
+            return response()->json(['message' => 'Kategorija nije pronađena'], 404);
         }
+
+        // Dohvati dodatne parametre iz URL-a (query string)
+        $filter = $request->query('filter');
+        $sort = $request->query('sort', 'name_asc');
+        $perPage = 10; // Broj događaja po stranici (prilagodi po potrebi)
+
+        // 2. Kreiranje upita sa filterima
+        $query = DB::table('events as e')
+            ->select('e.id', 'e.place', 'e.event', 'e.event_start', 'e.image', 'l.adress', 'c.name as category') 
+            ->join('locations as l', 'e.location_id', '=', 'l.id')
+            ->join('categories as c', 'e.category_id', '=', 'c.id')
+            // ⭐ KLJUČNO: Filtriranje po ID-u kategorije
+            ->where('e.category_id', $category->id);
+            
+        // 3. Dodavanje filtera po nazivu (ako je prisutan)
+        if ($filter) {
+            $query->where('e.event', 'LIKE', "%{$filter}%");
+        }
+        
+        // 4. Dodavanje sortiranja
+        if ($sort === 'name_desc') {
+            $query->orderBy('e.event', 'desc');
+        } else { // name_asc je podrazumevano
+            $query->orderBy('e.event', 'asc');
+        }
+
+        // 5. Paginacija
+        $events = $query->paginate($perPage);
+
+        // Vrati paginirani rezultat u ispravnom Laravel formatu
+        return response()->json($events); 
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error' => true,
+            'message' => 'Greška prilikom prikaza događaja po kategoriji.',
+            'details' => $e->getMessage()
+        ], 500);
     }
+}
 }

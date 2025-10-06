@@ -35,10 +35,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::patch('/change-password', [AuthController::class, 'changePassword']);
-    Route::get('/events/category/{categoryName}', [EventController::class, 'showByCategory']);
 });
 
-
+ Route::get('/events/category/{categoryName}', [EventController::class, 'showByCategory']);
 Route::resource('events', EventController::class)->only(['index', 'show']);
 Route::resource('categories', CategoryController::class)->only(['index', 'show']);
 Route::resource('locations', LocationController::class)->only(['index', 'show']);

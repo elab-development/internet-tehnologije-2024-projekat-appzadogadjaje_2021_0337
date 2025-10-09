@@ -13,7 +13,8 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ScraperController;
-
+use App\Http\Controllers\API\ForgotPasswordController;
+use App\Http\Controllers\API\ResetPasswordController;
 
 Route::get('/users', function () {
     return response()->json([
@@ -34,10 +35,14 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::patch('/change-password', [AuthController::class, 'changePassword']);
+    Route::patch('/change-password', [AuthController::class, 'changePassword']);    
+    Route::get('/events/category/{categoryName}', [EventController::class, 'showByCategory']);
 });
 
- Route::get('/events/category/{categoryName}', [EventController::class, 'showByCategory']);
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
+
 Route::resource('events', EventController::class)->only(['index', 'show']);
 Route::resource('categories', CategoryController::class)->only(['index', 'show']);
 Route::resource('locations', LocationController::class)->only(['index', 'show']);

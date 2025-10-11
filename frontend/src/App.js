@@ -10,7 +10,7 @@ import Register from "./pages/register";
 import Dogadjaji from "./pages/dogadjaji";
 import ChangePassword from "./pages/promenaLozinke"
 import Footer from "./components/footer";
-
+import ResetPassword from "./pages/resetPassword";
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />       
           <Route path="/dogadjaji" element={<Dogadjaji />} /> 
           <Route path="/login" element={<Login />} />
+           <Route path="/reset-password" element={<ResetPassword />} /> 
           <Route path="/registracija" element={<Register />} />
           <Route path="/promenaLozinke" element={<ChangePassword />} />
         </Routes>

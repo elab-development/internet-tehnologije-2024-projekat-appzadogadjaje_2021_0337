@@ -1,5 +1,3 @@
-// src/pages/ResetPassword.js
-
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 

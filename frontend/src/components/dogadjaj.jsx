@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function Dogadjaj({ event, isAdmin, onDelete, onEdit }) {
+export default function Dogadjaj({ event, isAdmin, onDelete, onEdit, user, handleFavorite,isFavoritePage, handleRemoveFavorite }) {
+
   const handleDelete = async () => {
     if (!window.confirm("Da li ste sigurni da želite da obrišete ovaj događaj?")) return;
 
@@ -42,13 +43,24 @@ export default function Dogadjaj({ event, isAdmin, onDelete, onEdit }) {
           />
         )}
 
+        {/* Dugme za favorite samo za ulogovane korisnike koji nisu admini */}
+        {user && user.role !== "admin" && handleFavorite && (
+          <button 
+            className="dugmence dugmence--favorite" 
+            onClick={() => handleFavorite(event.id)}
+          >
+            💖 Sačuvaj
+          </button>
+        )}
+
+        {/* Dugmad za admina */}
         {isAdmin && (
-          <div class="dugmici">
-            <button class="dugmence dugmence--delete"
+          <div className="dugmici">
+            <button className="dugmence dugmence--delete"
               onClick={handleDelete}>
               Obriši
             </button>
-            <button class="dugmence dugmence--edit"
+            <button className="dugmence dugmence--edit"
               onClick={() => onEdit(event)}>
               Izmeni
             </button>

@@ -32,6 +32,7 @@ function NavBar() {
             <li>
               <a href="#" onClick={handleLogout}>Logout</a>
             </li>
+             <a href="/omiljeni" className="nav-link">💖 Omiljeni</a>
           </>
         )}
       </ul>

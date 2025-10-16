@@ -122,6 +122,45 @@ export default function Dogadjaji() {
         });
     };
 
+    const handleFavorite = async (eventId) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Morate biti prijavljeni da biste sačuvali događaj!");
+    return;
+  }
+
+  try {
+    const res = await fetch(`http://localhost:8000/api/favorites/${eventId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // Proverimo da li je odgovor OK pre nego što parsiramo JSON
+    if (res.ok) {
+      const data = await res.json();
+      alert("Događaj sačuvan u favorite!");
+    } else {
+      // Pokušavamo da parsiramo JSON samo ako postoji
+      let errorMsg = `Greška (${res.status})`;
+      try {
+        const errorData = await res.json();
+        errorMsg = errorData.message || errorMsg;
+      } catch (parseErr) {
+        // Ako nije JSON, ostaje osnovna poruka
+      }
+      alert(errorMsg);
+    }
+  } catch (err) {
+    console.error("Greška:", err);
+    alert("Mrežna greška prilikom čuvanja događaja.");
+  }
+};
+
+
+
     const handleEdit = (event) => {
         setEditingEvent(event);
         setNewEvent({
@@ -334,6 +373,8 @@ export default function Dogadjaji() {
                         key={event.id}
                         event={event}
                         isAdmin={user?.role === "admin"}
+                         user={user}    
+                         handleFavorite={handleFavorite}
                         onDelete={(id) => setEvents(events.filter((e) => e.id !== id))}
                         onEdit={handleEdit}
                     />

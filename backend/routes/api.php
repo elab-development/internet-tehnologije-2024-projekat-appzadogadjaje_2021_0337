@@ -15,6 +15,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ScraperController;
 use App\Http\Controllers\API\ForgotPasswordController;
 use App\Http\Controllers\API\ResetPasswordController;
+use App\Http\Controllers\FavoriteController; 
 
 Route::get('/users', function () {
     return response()->json([
@@ -34,6 +35,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/favorites/{eventId}', [FavoriteController::class, 'store']);
+    Route::get('/favorites', [FavoriteController::class, 'index']);
+    Route::delete('/favorites/{eventId}', [FavoriteController::class, 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::patch('/change-password', [AuthController::class, 'changePassword']);    
     Route::get('/events/category/{categoryName}', [EventController::class, 'showByCategory']);

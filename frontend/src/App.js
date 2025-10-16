@@ -11,6 +11,7 @@ import Dogadjaji from "./pages/dogadjaji";
 import ChangePassword from "./pages/promenaLozinke"
 import Footer from "./components/footer";
 import ResetPassword from "./pages/resetPassword";
+import Omiljeni from "./pages/omiljeni";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
            <Route path="/reset-password" element={<ResetPassword />} /> 
           <Route path="/registracija" element={<Register />} />
           <Route path="/promenaLozinke" element={<ChangePassword />} />
+          <Route path="/omiljeni" element={<Omiljeni />} />
         </Routes>
         </BrowserRouter> 
         <Footer />

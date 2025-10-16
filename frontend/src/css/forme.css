@@ -318,3 +318,15 @@
     box-shadow: 0 0 8px var(--delete-color);
 }
 
+.dugme--cancel{
+  size:0.5rem; 
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  margin-left: 10px; 
+  background: gray; 
+  border: rgb(255, 255, 255) solid 2px;
+}
+
+.dugme--cancel:hover{
+  background: #333;
+}

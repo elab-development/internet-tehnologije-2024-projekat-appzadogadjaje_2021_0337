@@ -61,7 +61,7 @@ export default function ChangePassword() {
           <div className="body__backdrop"></div>
           <div className="body__content">
             <div className="modal__glitch" aria-hidden="true">
-      <h2 className="auth-title">Promena lozinke</h2>
+      <h2>Promena lozinke</h2>
 
       <PasswordField 
         label="Trenutna lozinka" 

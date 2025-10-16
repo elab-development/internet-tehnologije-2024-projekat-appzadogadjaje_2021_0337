@@ -228,3 +228,11 @@ body::before {
     background-color: #1a1a1a; 
     color: var(--accent);
 }
+
+.controls-bar{
+   margin-bottom:  20px; 
+   display: flex;
+   gap: 20px; 
+   align-items: flex-end; 
+   flex-wrap: wrap;
+}

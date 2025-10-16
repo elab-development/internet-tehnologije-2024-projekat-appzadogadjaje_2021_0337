@@ -36,7 +36,6 @@ export default function Omiljeni() {
     fetchFavorites();
   }, [token]);
 const handleRemoveFavorite = async (eventId) => {
-    if (!window.confirm("Da li ste sigurni da želite da uklonite ovaj događaj iz omiljenih?")) return;
     
     try {
       const res = await fetch(`http://localhost:8000/api/favorites/${eventId}`, {
@@ -49,7 +48,6 @@ const handleRemoveFavorite = async (eventId) => {
       if (res.ok) {
         // Ažuriranje frontenda: Filtriraj događaje i ukloni onaj sa datim ID-jem
         setFavorites(favorites.filter((fav) => fav.id !== eventId));
-        alert("Događaj je uklonjen iz omiljenih!");
         
         // Opcionalno, ponovo dohvati podatke ako želite da budete 100% sigurni
         // fetchFavorites();
@@ -81,10 +79,12 @@ const handleRemoveFavorite = async (eventId) => {
         {favorites.map((fav) => (
           <Dogadjaj
             key={fav.id}
-            event={fav} //  ISPRAVNO: Prosledite CEO 'fav' objekat kao prop 'event'
+            event={fav} 
             isAdmin={false}
             user={user}
             handleFavorite={null} 
+            isFavoritePage={true}
+            handleRemoveFavorite={handleRemoveFavorite}
           />
         ))}
       </div>

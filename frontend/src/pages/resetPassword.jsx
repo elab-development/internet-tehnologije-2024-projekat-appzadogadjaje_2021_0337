@@ -5,13 +5,11 @@ export default function ResetPassword() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  // 1. Stanja za formu
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [message, setMessage] = useState("");
   const [token, setToken] = useState(null);
 
-  // 2. Izvlačenje tokena iz URL-a (token=XYZ...)
   useEffect(() => {
     const urlToken = searchParams.get("token");
     if (!urlToken) {
@@ -20,7 +18,6 @@ export default function ResetPassword() {
     setToken(urlToken);
   }, [searchParams]);
 
-  // 3. Rukovanje slanjem nove lozinke
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("Resetovanje lozinke u toku...");
@@ -35,7 +32,6 @@ export default function ResetPassword() {
     }
 
     try {
-      // PROMENITE URL OVDE: Koristite vaš stvarni backend endpoint za resetovanje lozinke!
       const res = await fetch(`http://localhost:8000/api/reset-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -51,10 +47,8 @@ export default function ResetPassword() {
 
       if (res.ok) {
         setMessage("Lozinka uspešno resetovana. Možete se ulogovati.");
-        // Opcionalno: Preusmeri na login nakon kratkog odlaganja
         setTimeout(() => navigate("/login"), 3000); 
       } else {
-        // Prikazuje greške iz backenda (npr. token istekao, lozinka prekratka)
         const backendMessage = data.message || "Greška pri resetovanju lozinke.";
         setMessage(backendMessage);
       }
@@ -63,7 +57,6 @@ export default function ResetPassword() {
     }
   };
 
-  // 4. Prikaz (Koristimo isti modal stil kao za Login!)
   return (
     <div className={`modal active`} id="reset-password-modal">
       <section className="modal__body">
@@ -107,7 +100,6 @@ export default function ResetPassword() {
                 </button>
               </form>
             ) : (
-              // Prikazuje poruku dok čekamo token ili ako token nije pronađen
               <p className="message">{message || "Proveravam token..."}</p>
             )}
           </div>

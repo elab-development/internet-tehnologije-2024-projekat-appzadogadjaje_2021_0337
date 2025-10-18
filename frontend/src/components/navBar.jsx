@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
   const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role"); 
+    const user = token ? JSON.parse(localStorage.getItem("user")) : null;
+  const role = user?.role; 
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.removeItem("user");
     navigate("/"); 
   };
 
@@ -32,8 +33,10 @@ function NavBar() {
             <li>
               <a href="#" onClick={handleLogout}>Logout</a>
             </li>
-             <a href="/omiljeni" className="nav-link">💖 Omiljeni</a>
           </>
+        )}
+       {token && role !== "admin" && (
+          <li><a href="/omiljeni">Omiljeni</a></li>
         )}
       </ul>
     </div>

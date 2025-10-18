@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
 @import url('https://unpkg.com/normalize.css') layer(normalize);
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .goldman-bold {
   font-family: 'Goldman', sans-serif;
@@ -42,6 +43,7 @@ body::before {
 
 .event-card {
   display: flex;
+   position: relative; 
   flex-direction: column;
   padding: 0 20px;
   width: 410px;
@@ -103,8 +105,8 @@ body::before {
 
 .event-card img {
   width: 100%;
-  height: 14rem;        
-  object-fit: cover;
+  height: 15rem;        
+  object-fit: fill;
   border-radius: 5px;
   margin-bottom: 8px;
 }
@@ -190,24 +192,30 @@ body::before {
 
 
 
-
-
-.category-filter {
-    margin-bottom: 20px;
+.controls-bar{
+  margin-top: 45px;;
+   margin-bottom: 20px;
+   margin-left: 20px;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: baseline;
+    gap: 30px;
     font-family: 'Cyber', sans-serif;
     color: var(--accent);
     font-size: 1.5rem;
 }
 
-.select-wrapper {
-    position: relative;
-    display: inline-block;
+
+.filter-sort {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    font-family: 'Cyber', sans-serif;
+    color: var(--accent);
+    font-size: 1.5rem;
 }
 
-.category-filter select {
+.filter-sort select {
     background-color: transparent; 
     color: var(--accent);
     border: 2px solid var(--accent);
@@ -220,19 +228,81 @@ body::before {
     transition: box-shadow 0.3s ease;
 }
 
-.category-filter select:hover {
+.filter-sort select:hover {
     box-shadow: 0 0 10px var(--accent);
 }
 
-.category-filter option {
+.filter-sort option {
     background-color: #1a1a1a; 
     color: var(--accent);
 }
 
-.controls-bar{
-   margin-bottom:  20px; 
-   display: flex;
-   gap: 20px; 
-   align-items: flex-end; 
-   flex-wrap: wrap;
+
+
+
+.search-group {
+    display: flex;
+    align-items: flex-end; 
+    gap: 10px; 
+    font-family: 'Cyber', sans-serif;
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.search-group input[type="text"] {
+background-color: transparent; 
+color: var(--accent);
+border: 2px solid var(--accent);
+padding: 10px 10px; 
+border-radius: 0;
+    outline: none;
+    font-family: 'Cyber', sans-serif;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease;
+    width: 250px; 
+}
+
+.search-group input[type="text"]:hover,
+.search-group input[type="text"]:focus {
+box-shadow: 0 0 10px var(--accent);
+}
+
+
+
+
+.skrejp{
+  font-family: 'Cyber',sans-serif;
+   border-radius: 10%;
+  width: 10.5rem;
+  height: 5.5rem;
+  font-size: 2rem;
+  color: rgb(82, 34, 228);
+  background: transparent;
+  backdrop-filter: blur(5px);
+  border: 3px solid rgb(80, 30, 230);
+  box-shadow:
+    0 0 10px rgb(82, 25, 180),
+    0 0 20px rgb(84, 41, 202),
+    inset 0 0 10px rgb(60, 27, 208);
+  top: 40px; 
+  right: 20px;
+  position: fixed;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.poruka{
+  text-align: left; 
+  color: white;
+  font-family: goldman;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+  margin-top: 2rem;
+  margin-left: 1.3rem;
+text-shadow: 0.05em 0 0 rgba(255, 0, 230, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+    0.025em 0.05em 0 rgba(88, 9, 148, 0.75);
+ 
 }

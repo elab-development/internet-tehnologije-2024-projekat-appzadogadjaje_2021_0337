@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default function Dogadjaj({ event, isAdmin, onDelete, onEdit, user, handleFavorite, isFavoritePage, handleRemoveFavorite }) {
+export default function Dogadjaj({
+  event,
+  isAdmin,
+  onDelete,
+  onEdit,
+  user,
+  handleFavorite,
+  initialIsFavorite = false,
+  isFavoritePage,
+  handleRemoveFavorite
+}) {
+  const [liked, setLiked] = useState(initialIsFavorite);
+
+
+  useEffect(() => {
+    setLiked(initialIsFavorite);
+  }, [initialIsFavorite]);
+
+  const handleToggleFavorite = async () => {
+    if (!user) {
+      alert("Morate biti prijavljeni da biste sačuvali događaj!");
+      return;
+    }
+
+  if (handleFavorite) {
+    handleFavorite(event.id); 
+  }
+  setLiked(true); 
+};
+
 
   const handleDelete = async () => {
     if (!window.confirm("Da li ste sigurni da želite da obrišete ovaj događaj?")) return;
@@ -25,7 +54,6 @@ export default function Dogadjaj({ event, isAdmin, onDelete, onEdit, user, handl
     }
   };
 
-  // Novi handler za uklanjanje iz omiljenih
   const handleRemoveFromFavorites = async () => {
     if (!window.confirm("Da li želite da uklonite događaj iz omiljenih?")) return;
 
@@ -39,6 +67,7 @@ export default function Dogadjaj({ event, isAdmin, onDelete, onEdit, user, handl
       if (res.ok) {
         alert("Događaj uklonjen iz omiljenih!");
         if (handleRemoveFavorite) handleRemoveFavorite(event.id);
+        setLiked(false);
       } else {
         const data = await res.json();
         alert("Greška: " + (data.message || "Neuspešno uklanjanje iz omiljenih"));
@@ -64,27 +93,22 @@ export default function Dogadjaj({ event, isAdmin, onDelete, onEdit, user, handl
           />
         )}
 
-        {/* Dugme za favorite samo za ulogovane korisnike koji nisu admini */}
-        {user && user.role !== "admin" && handleFavorite && !isFavoritePage && (
-          <button 
-            className="dugmence dugmence--favorite" 
-            onClick={() => handleFavorite(event.id)}
+        {user && user.role !== "admin" && !isFavoritePage && (
+          <span 
+            className={`heart-icon ${liked ? "liked" : ""}`}
+            onClick={handleToggleFavorite}
+             style={{ cursor: "pointer", fontSize: "2.5rem", marginTop: "1rem",marginLeft:"0.5rem", display: "inline-block" }}
           >
-            💖 Sačuvaj
-          </button>
+            {liked ? "❤️" : "🤍"}
+          </span>
         )}
 
-        {/* Dugme za uklanjanje iz favorita (samo na favorites stranici) */}
         {isFavoritePage && user && handleRemoveFavorite && (
-          <button
-            className="dugmence dugmence--delete"
-            onClick={handleRemoveFromFavorites}
-          >
-            🗑️ Ukloni iz omiljenih
-          </button>
+          <button class="button" onClick={handleRemoveFromFavorites}>
+  <svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+</button>
         )}
 
-        {/* Dugmad za admina */}
         {isAdmin && (
           <div className="dugmici">
             <button className="dugmence dugmence--delete"

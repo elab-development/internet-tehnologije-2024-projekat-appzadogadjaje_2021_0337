@@ -39,18 +39,14 @@ const handleRemoveFavorite = async (eventId) => {
     
     try {
       const res = await fetch(`http://localhost:8000/api/favorites/${eventId}`, {
-        method: "DELETE", // Koristimo DELETE metodu
+        method: "DELETE", 
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       if (res.ok) {
-        // Ažuriranje frontenda: Filtriraj događaje i ukloni onaj sa datim ID-jem
         setFavorites(favorites.filter((fav) => fav.id !== eventId));
-        
-        // Opcionalno, ponovo dohvati podatke ako želite da budete 100% sigurni
-        // fetchFavorites();
       } else {
         const errorData = await res.json();
         alert(`Greška pri uklanjanju: ${errorData.message || res.statusText}`);
@@ -61,20 +57,20 @@ const handleRemoveFavorite = async (eventId) => {
     }
   };
   if (!user) {
-    return <p style={{ color: "white" }}>Morate biti prijavljeni da biste videli omiljene događaje.</p>;
+    return <p className="poruka">Morate biti prijavljeni da biste videli omiljene događaje.</p>;
   }
 
   if (loading) {
-    return <p style={{ color: "white" }}>Učitavanje omiljenih događaja...</p>;
+    return <p className="poruka">Učitavanje omiljenih događaja...</p>;
   }
 
   if (favorites.length === 0) {
-    return <p style={{ color: "white" }}>Nemate sačuvanih događaja još uvek.</p>;
+    return <p className="poruka">Nemate sačuvanih događaja.</p>;
   }
 
   return (
     <div>
-      <h2 style={{ color: "yellow", marginBottom: "20px" }}>💖 Vaši omiljeni događaji</h2>
+      <h2 class="poruka">Vaši omiljeni događaji</h2>
       <div className="events-container">
         {favorites.map((fav) => (
           <Dogadjaj

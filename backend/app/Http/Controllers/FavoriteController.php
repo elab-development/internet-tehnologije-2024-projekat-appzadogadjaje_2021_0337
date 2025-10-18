@@ -10,10 +10,9 @@ class FavoriteController extends Controller
 {
     public function store(Request $request, $eventId)
     {
-        $user = $request->user(); // ulogovani korisnik
+        $user = $request->user(); 
         $event = Event::findOrFail($eventId);
 
-        // dodaj u favorite ako već nije dodat
         $user->favoriteEvents()->syncWithoutDetaching([$event->id]);
 
         return response()->json(['message' => 'Događaj je sačuvan u omiljene.']);

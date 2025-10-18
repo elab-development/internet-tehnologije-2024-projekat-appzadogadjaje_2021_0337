@@ -8,15 +8,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // NOVO STANJE: Kontroliše prikaz forme za zaboravljenu lozinku
   const [showForgotForm, setShowForgotForm] = useState(false); 
-  const [forgotEmail, setForgotEmail] = useState(""); // Email za formu za zaboravljenu lozinku
-  const [forgotMessage, setForgotMessage] = useState(""); // Poruka za formu za zaboravljenu lozinku
+  const [forgotEmail, setForgotEmail] = useState(""); 
+  const [forgotMessage, setForgotMessage] = useState(""); 
 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // Resetuj poruke pre logovanja
     setMessage("");
     setForgotMessage(""); 
 
@@ -45,13 +43,11 @@ export default function Login() {
     }
   };
 
-  // NOVA FUNKCIJA: Rukuje slanjem forme za zaboravljenu lozinku
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     setForgotMessage("Slanje zahteva...");
     
     try {
-      // PROMENITE URL OVDE: Dodajte stvarni endpoint za reset lozinke na vašem backendu
       const res = await fetch("http://localhost:8000/api/forgot-password", { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,7 +84,6 @@ export default function Login() {
               <span>{showForgotForm ? "ZABORAVLJENA LOZINKA" : "LOGIN"}</span>
             </h2>
 
-            {/* Logovanje forma */}
             {!showForgotForm && (
               <div>
                 <EmailField 
@@ -100,17 +95,15 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)} 
                 />
                 
-                {/* NOVI LINK ZA ZABORAVLJENU LOZINKU */}
                 <p 
                   className="forgot-password-link" 
                   onClick={() => {
                     setShowForgotForm(true);
-                    setMessage(""); // Sakrij poruku o logovanju
+                    setMessage("");
                   }}
                 >
                   Zaboravio sam lozinku
                 </p>
-                {/* KRAJ LINKA */}
 
                 {message && <p className="message">{message}</p>}
                 
@@ -120,7 +113,6 @@ export default function Login() {
               </div>
             )}
             
-            {/* NOVI BLOK: Forma za zaboravljenu lozinku */}
             {showForgotForm && (
               <form onSubmit={handleForgotPassword}>
                 <div className="input-field" style={{display: 'block'}}>
@@ -129,7 +121,7 @@ export default function Login() {
                       placeholder="UNESITE EMAIL"
                       value={forgotEmail}
                       onChange={(e) => setForgotEmail(e.target.value)}
-                      className="input-box" // Koristimo postojeću klasu za stil
+                      className="input-box" 
                       required
                     />
                 </div>
@@ -157,8 +149,6 @@ export default function Login() {
                 </button>
               </form>
             )}
-            {/* KRAJ NOVE FORME */}
-            
           </div>
         </div>
       </section>

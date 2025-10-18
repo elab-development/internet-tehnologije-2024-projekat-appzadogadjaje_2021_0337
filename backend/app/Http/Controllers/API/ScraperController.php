@@ -38,7 +38,7 @@ class ScraperController extends Controller{
         return response()->json(['error' => 'Neispravan JSON format ili prazan rezultat.'], 500);
     }
 
-     \App\Models\Event::truncate();
+     \App\Models\Event::query()->delete();
 
     foreach ($events as $event) {
      

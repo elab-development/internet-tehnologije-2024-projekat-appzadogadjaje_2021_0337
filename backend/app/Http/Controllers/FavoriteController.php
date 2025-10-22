@@ -17,7 +17,7 @@ class FavoriteController extends Controller
 
         return response()->json(['message' => 'Događaj je sačuvan u omiljene.']);
     }
-
+//komentar
     public function index(Request $request)
     {
         $user = $request->user();

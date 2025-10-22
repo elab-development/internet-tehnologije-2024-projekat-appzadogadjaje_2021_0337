@@ -15,12 +15,10 @@ class EventController extends Controller
 {
     try {
         $perPage = 10;
-        // Dohvat parametara
         $page = $request->query('page', 1);
-        $filter = $request->query('filter'); // Za filtriranje po nazivu
-        $sort = $request->query('sort', 'name_asc'); // Za sortiranje
+        $filter = $request->query('filter'); 
+        $sort = $request->query('sort', 'name_asc'); 
 
-        // 1. Inicijalizacija Query Builder-a sa JOIN-ovima i selekcijom kolona
         $query = DB::table('events as e')
             ->select(
                 'e.id', 
@@ -34,13 +32,10 @@ class EventController extends Controller
             ->join('locations as l', 'e.location_id', '=', 'l.id')
             ->join('categories as c', 'e.category_id', '=', 'c.id');
 
-        // 2. Primena Filter uslova
         if ($filter) {
-            // Dodaje WHERE e.event LIKE '%filter_value%'
             $query->where('e.event', 'LIKE', "%{$filter}%");
         }
 
-        // 3. Primena Sortiranja
         if($sort=='name_desc'){
             $query->orderBy('e.event', 'DESC');
         }
@@ -48,11 +43,9 @@ class EventController extends Controller
          $query->orderBy('e.event', 'ASC');
         }
 
-        // 4. Brojanje ukupnog broja rezultata (sa filterom, bez LIMIT/OFFSET)
         $total = $query->count();
         $offset = ($page - 1) * $perPage;
 
-        // 5. Primena Paginacije (LIMIT/OFFSET)
         $events = $query->offset($offset)->limit($perPage)->get();
 
         return response()->json([

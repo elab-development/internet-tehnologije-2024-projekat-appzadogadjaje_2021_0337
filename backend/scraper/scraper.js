@@ -10,7 +10,6 @@ const { executablePath } = require('puppeteer');
 
   const allEvents = [];
 
-  // ----- Belgrade Beat -----
   const beatPage = await browser.newPage();
   await beatPage.goto('https://belgrade-beat.rs/lat/desavanja/danas', { waitUntil: 'domcontentloaded' });
   await beatPage.waitForSelector('.colx.w-75', { timeout: 10000 });
@@ -62,7 +61,6 @@ const { executablePath } = require('puppeteer');
   allEvents.push(...beatEvents);
 
 
-  // ----- Teatar na Brdu -----
 const teatarPage = await browser.newPage();
 await teatarPage.goto('https://teatarnabrdu.rs/repertoar/', { waitUntil: 'domcontentloaded' });
 await teatarPage.waitForSelector('.et_pb_column', { timeout: 10000 });
@@ -93,7 +91,6 @@ const teatarEvents = await teatarPage.evaluate(() => {
 
   allEvents.push(...teatarEvents);
 
-  // ----- MTS Dvorana -----
   const mtsPage = await browser.newPage();
   await mtsPage.goto('https://mtsdvorana.rs/dogadjaji/koncerti', { waitUntil: 'domcontentloaded' });
   await mtsPage.waitForSelector('.movie-item', { timeout: 10000 });

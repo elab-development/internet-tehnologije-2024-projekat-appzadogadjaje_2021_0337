@@ -21,7 +21,6 @@ class ForgotPasswordController extends Controller
 
         $token = app('auth.password.broker')->createToken($user);
 
-        // Pošalji plain text mejl preko Mail::raw
         Mail::raw("Reset link: " . config('app.frontend_url') . "/reset-password?token={$token}&email={$user->email}", function (Message $message) use ($user) {
             $message->to($user->email)
                     ->subject('Reset lozinke');
@@ -29,7 +28,7 @@ class ForgotPasswordController extends Controller
 
         return response()->json([
             'message' => 'Reset link poslat na email.',
-            'reset_link' => config('app.frontend_url') . "/reset-password?token={$token}&email={$user->email}" // opcionalno za test
+            'reset_link' => config('app.frontend_url') . "/reset-password?token={$token}&email={$user->email}" 
         ]);
     }
 }
